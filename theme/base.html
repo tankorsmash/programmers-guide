@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="http://cocos2d-x.org/programmersguide/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="http://cocos2d-x.org/programmersguide/css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="http://cocos2d-x.org/programmersguide/css/highlight.css">
+  <link rel="stylesheet" href="http://cocos2d-x.org/programmersguide/css/pg.css">
   {%- for path in extra_css %}
   <link href="{{ path }}" rel="stylesheet">
   {%- endfor %}
@@ -29,11 +30,24 @@
   <script src="{{ path }}"></script>
   {%- endfor %}
 
-  <style>
-    body {font-size: 90%;}
-    pre, code {font-size: 100%;}
-    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script>
+  $(function() {
+    var key = "cocos2d-x_pg_lang";
+    var switch_lang = function(l) {
+        $('.langs li a').removeClass('selected');
+        $('#'+l).addClass('selected');
+        $('.tab_content').hide();
+        $('.'+l).show();
+        $.cookie(key, l);
+    }
+    $('.langs li a').click(function() {switch_lang(this.id);return false;});
+    var c = $.cookie(key);
+    if (typeof c == 'undefined') c='tab-cpp'; 
+    switch_lang(c);
+  });
+  </script>
+
   {%- block extrahead %} {% endblock %}
 </head>
 
