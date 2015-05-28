@@ -1,11 +1,5 @@
 $( document ).ready(function() {
 
-    // Tipue Search activation
-    $('#tipue_search_input').tipuesearch({
-        'mode': 'static',
-        'show': 10
-    });
-
     // Shift nav in mobile when clicking the menu.
     $(document).on('click', "[data-toggle='wy-nav-top']", function() {
       $("[data-toggle='wy-nav-shift']").toggleClass("shift");
