@@ -27,9 +27,15 @@ help() {
   echo "this script reqires: "
   echo ""
   echo "mkdocs: http://www.mkdocs.org/"
-  echo "Grip - https://github.com/joeyespo/grip"
-  echo "PrinceXML - https://princexml.com"
-  echo "Bash 4.0: brew install bash"
+  echo "Pandoc: http://johnmacfarlane.net/pandoc/getting-started.html"
+  echo "A LaTex Distribution: http://www.tug.org/mactex/downloading.html"
+  echo "run: sudo /usr/local/texlive/2014basic/bin/universal-darwin/tlmgr update --self"
+  echo "run: sudo /usr/local/texlive/2014basic/bin/universal-darwin/tlmgr install collection-fontsrecommended"
+  echo "run: sudo /usr/local/texlive/2014basic/bin/universal-darwin/tlmgr install ec ecc"
+  echo "export TEXROOT=/usr/local/texlive/2014basic/bin/universal-darwin/"
+  echo "export PATH=$TEXROOT:$PATH"
+  echo ""
+  echo "To Do: Be able to insert a page break at the end of each chapter. right now it is continuous"
   echo ""
 }
 
@@ -96,19 +102,72 @@ buildHTML() {
 buildPrint() {
   ## create HTML docs from the markdown files in the above array
   echo "building print version..."
-  for i in "${allDocuments[@]}"; do
-    grip --user <user> --pass <pass> --gfm print/${i}.md --export print/${i}.html
+  cp solarized-light.css main.css style.css _layout.html5 print/.
 
-    ## insert the proper style that princeXML needs
-    strToInsert='<style> @page { prince-shrink-to-fit: none } .repository-content {width: 900px ! important;} @page { margin: 40pt 10pt 40pt 10pt;}</style>'
-    sed -i.bak "s#</head>#$strToInsert </head>#" print/${i}.html
+  for i in "${allDocuments[@]}"; do
+    pandoc -s --template "_layout" --css "solarized-light.css" -f markdown -t html5 -o print/${i}.html print/${i}.md
   done
 
-  echo "building the PDF..."
+  ## create a PDF from the styled HTML
+  echo "building ePub..."
   cd print/
-  prince index.html "${allChapters[@]/%/.html}" -o ../ProgrammersGuide.pdf
+  pandoc -S --epub-stylesheet="style.css" -o "ProgrammersGuide.epub" \
+  index.html \
+  blank.html \
+  1.html \
+  blank.html \
+  2.html \
+  blank.html \
+  3.html \
+  blank.html \
+  4.html \
+  blank.html \
+  5.html \
+  blank.html \
+  6.html \
+  blank.html \
+  7.html \
+  blank.html \
+  8.html \
+  blank.html \
+  9.html \
+  blank.html \
+  10.html \
+  blank.html \
+  11.html \
+  blank.html \
+  12.html \
+  blank.html \
+  13.html \
+  blank.html \
+  14.html \
+  blank.html \
+  A.html \
+  blank.html \
+  B.html \
+  blank.html \
+  C.html \
+  blank.html \
+  D.html \
+  blank.html \
+  E.html \
+  blank.html \
+  F.html \
+  blank.html \
+  G.html \
+  blank.html \
+  H.html \
+  blank.html \
+  I.html \
+  blank.html
+
+  echo "building PDF..."
+  pandoc -s ProgrammersGuide.epub --variable mainfont=Arial --variable monofont="Andale Mono" -o ProgrammersGuide.pdf --latex-engine=xelatex
+  echo ""
+
   cd ..
-  cp ProgrammersGuide.pdf site/.
+
+  cp print/ProgrammersGuide.pdf print/ProgrammersGuide.epub site/.
 }
 
 main() {
