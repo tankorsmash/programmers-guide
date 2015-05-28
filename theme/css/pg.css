@@ -1,0 +1,26 @@
+body {font-size: 90%;}
+pre, code {font-size: 100%;}
+h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+
+.langs {float: right}
+.langs ul{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        border: 1px solid #ccc;
+}
+.langs li{
+        background: none;
+        display: inline-block;
+        padding: 10px 15px;
+        cursor: pointer;
+}
+.langs a, .lang a:visited {
+  color: #a8a8a8;
+}
+.langs li a.selected{
+  color: #333;
+}
+.tab-content {
+        display: none;
+}
