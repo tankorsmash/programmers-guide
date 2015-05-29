@@ -23,7 +23,7 @@ This is the Cocos2d-x programmers guide. It is licensed under the
 * run: sudo /usr/local/texlive/2014basic/bin/universal-darwin/tlmgr  install collection-fontsrecommended
 * run: sudo /usr/local/texlive/2014basic/bin/universal-darwin/tlmgr install ec ecc
 * export TEXROOT=/usr/local/texlive/2014basic/bin/universal-darwin/
-* export PATH=$TEXROOT:$PATH 
+* export PATH=$TEXROOT:$PATH
 
 ## How to run/test
 
