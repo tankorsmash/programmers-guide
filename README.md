@@ -2,18 +2,22 @@ Programmers-Guide
 =================
 
 This is the Cocos2d-x programmers guide. It is licensed under the
-`Creative Commons BY-SA` license. You can find it [here]( https://creativecommons.org/licenses/by-sa/4.0/)
+[`Creative Commons BY-SA` license.]( https://creativecommons.org/licenses/by-sa/4.0/)
+
+You can read this guide [online](http://www.cocos2d-x.org/programmersguide) at http://www.cocos2d-x.org/programmersguide
 
 
 ## Directory layout
 
+* `chapters/` - markdown content and images
+* `theme/` - custom theme for web version
+* `drafts/` - pages that are currently works in progress, and either under construction or not yet reviewed and approved
 * `blank.md` - a blank page that is used when building print versions
 * `build.sh` - BASH script that build web and print versions, deploys to server
-* `chapters` - markdown content and images
 * `mkdocs.yml` - MKDocs configuration
 * `outline.md` - outline of what this guide covers (may be out of date)
 * `README.md` - this file :-)
-* `theme` - custom theme for web version
+* See Additional Notes for more information
 
 ## What do you need to build for OS X?
 
@@ -25,7 +29,7 @@ This is the Cocos2d-x programmers guide. It is licensed under the
 * export TEXROOT=/usr/local/texlive/2014basic/bin/universal-darwin/
 * export PATH=$TEXROOT:$PATH
 
-## How to run/test
+## How to run/test these docs
 
 * `cd <where you cloned this repo>/programmers-guide`
 * run `mkdocs serve`
@@ -41,40 +45,40 @@ Content is build in `docs` and deployed to `site`. This script also builds the
 ePub and PDF versions as well as deploys out to staging (ChukongUSA.github.io)
 and http://www.cocos2d-x.org/programmersguide
 
-## How to add new content
+## When contributing
 
 * make sure to break lines at 80 columns.
-* __chapters__ are actual book content while __appendix__ are installation and tools
-* via a `pull request`. Please do not edit chapters directly.
+* __chapters__ are actual book content while __appendices__ are for installation notes and tools
+* edit via a `pull request`. Please do not edit chapters directly.
 * If you are creating a new chapter, please don't make it feel and sound like an API Reference. This is a guide suited for new users (even though advanced users will benefit too). Please tell a story about your content. We want to make this engage the user. If in doubt: read Chapter 2 and notice it feels like a chapter in a book.
 * Contact me via e-mail or on the forums to discuss what you want to add, edit, etc.
-* `drafts` are chapters that are under construction or review and not yet approved for the guide. (i.e new material). If you are adding to an existing chapter or appendix, please do so via a pull request.
+
+## Additional layout notes
 * each chapter has a markdown file and 3 image directories associated with it.
-The image directories are `-web`, `-print` and `-img`.  `-web` is properly sized images for displaying on the web. `print` is properly sized images for displaying in the __epub__ and __pdf__. `-img` is were to put the original images (also displayed when viewing from GitHub).
+* The image directories are `-web`, `-print` and `-img`.  `-web` is properly sized images for displaying on the web. `print` is properly sized images for displaying in the __epub__ and __pdf__. `-img` is were to put the original images (also displayed when viewing from GitHub).
 * the `build.sh` script does copying and renaming of directories during the build process since the markdown files expects files at a specific path. Take a look.
 * If a chapter does not have any images there is no need to create directories
 for it.
 
 ## Supporting multiple languages (cpp, js, lua)
 
-To support c++, js (and technically lua when ready). It is very simple. You
-can directly embed `div` elements and put the content for that language in
-between.
+To support C++, JS, (and technically lua when ready), you can easily embed `div`
+elements and put the content for that language in between:
 
-Example for c++:
+Example for C++:
   ```
   <div class="tab-cpp tab_content">
 
-some text that is c++ specific.....
+some content that is c++ specific.....
 
 
-more c++ specific text....
+more c++ specific content....
 ```
 ```cpp
 auto mySprite = Sprite::create("mysprite.png");
 ```
 ```
-even more c++ specific text....
+even more c++ specific content....
   </div>
 ```
 
@@ -82,13 +86,13 @@ Example for Javascript:
 ```
   <div class="tab-js tab_content">
 
-some javascript specific text...
+some javascript specific content...
 ```
 ```javascript
 var mySprite = Sprite.create("mysprite.png");
 ```
 ```
-more javascript text....
+more javascript content....
 
   </div>
 ```
@@ -99,7 +103,7 @@ properly.
 __Note:__ Also notice that the `div` elements are indented by a single __tab__. This is also a __markdown__ requirement or else the text will not
 render properly.
 
-## I found an error
+## If you find an error
 
 * report via GitHub issues: https://github.com/chukong/programmers-guide/issues
 * or clone and submit a pull request to fix it: https://github.com/chukong/programmers-guide/pulls
